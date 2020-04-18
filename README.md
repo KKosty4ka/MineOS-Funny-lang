@@ -1,0 +1,1 @@
+# MineOS-Funny-lang
