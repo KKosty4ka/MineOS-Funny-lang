@@ -16,10 +16,7 @@ local switch = layout:addChild( GUI.switchAndLabel(1, 1, 41, 6, 0x336DFF, 0xE1E1
 local installButton = layout:addChild( GUI.button(1, 1, 36, 3, 0xE1E1E1, 0x696969, 0xD2D2D2, 0x3C3C3C, "Установить гоблинский перевод!") )
 
 installButton.onTouch = function()
-    if otkaz == false then
-
-    else
-        installButton:remove()
+    installButton:remove()
 
     internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/Localizations/JoPa.lang", "/Localizations/Russian.lang")
     internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/Localizations/JoPa.lang", "/Localizations/English.lang")
