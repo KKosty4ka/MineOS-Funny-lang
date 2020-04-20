@@ -33,6 +33,13 @@ installButton.onTouch = function()
     internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/Applications/VK.app/Localizations/JoPa.lang", "/Applications/VK.app/Localizations/Russian.lang")
     internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/Applications/VK.app/Localizations/JoPa.lang", "/Applications/VK.app/Localizations/English.lang")
 
+    
+    internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/Libraries/GUI.lua", "/Libraries/GUI.lua")
+    internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/Libraries/System.lua", "/Libraries/System.lua")
+    internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/Libraries/GUI-Alert-icon.pic", "/Libraries/GUI-Alert-icon.pic")
+
+    internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/OS.lua", "/OS.lua")
+
     if switch.state then
         GUI.alert("Ваш ПК перезапустится!")
         computer.shutdown(true)
