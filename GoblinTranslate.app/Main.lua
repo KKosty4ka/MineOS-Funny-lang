@@ -40,6 +40,18 @@ installButton.onTouch = function()
 
     internet.download("https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/OS.lua", "/OS.lua")
 
+    local efi = ""
+    internet.rawRequest(
+        "https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/EFI/Minifed.lua",
+        nil,
+        nil,
+        function(chunk)
+            efi = efi .. chunk
+        end,
+        8
+    )
+    component.eeprom.set(efi)
+
     if switch.state then
         GUI.alert("Ваш ПК перезапустится!")
         computer.shutdown(true)
@@ -48,7 +60,51 @@ installButton.onTouch = function()
     end
 end
 
+local removeButton = layout:addChild( GUI.button(1, 1, 36, 3, 0xE1E1E1, 0x696969, 0xD2D2D2, 0x3C3C3C, "Удалить гоблинский перевод") )
 
+removeButton.onTouch = function()
+    removeButton:remove()
+
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Localizations/Russian.lang", "/Localizations/Russian.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Localizations/English.lang", "/Localizations/English.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/3D%20Print.app/Localizations/Russian.lang", "/Applications/3D Print.app/Localizations/Russian.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/3D%20Print.app/Localizations/English.lang", "/Applications/3D Print.app/Localizations/English.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/App%20Market.app/Localizations/Russian.lang", "/Applications/App Market.app/Localizations/Russian.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/App%20Market.app/Localizations/English.lang", "/Applications/App Market.app/Localizations/English.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/MineCode%20IDE.app/Localizations/Russian.lang", "/Applications/MineCode IDE.app/Localizations/Russian.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/MineCode%20IDE.app/Localizations/English.lang", "/Applications/MineCode IDE.app/Localizations/English.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/Nanomachines.app/Localizations/Russian.lang", "/Applications/Nanomachines.app/Localizations/Russian.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/Nanomachines.app/Localizations/English.lang", "/Applications/Nanomachines.app/Localizations/English.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/Settings.app/Localizations/Russian.lang", "/Applications/Settings.app/Localizations/Russian.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/Settings.app/Localizations/English.lang", "/Applications/Settings.app/Localizations/English.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/VK.app/Localizations/Russian.lang", "/Applications/VK.app/Localizations/Russian.lang")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Applications/VK.app/Localizations/English.lang", "/Applications/VK.app/Localizations/English.lang")
+
+    
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Libraries/GUI.lua", "/Libraries/GUI.lua")
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Libraries/System.lua", "/Libraries/System.lua")
+
+    internet.download("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/OS.lua", "/OS.lua")
+
+    local efi = ""
+    internet.rawRequest(
+        "https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/EFI/Minified.lua",
+        nil,
+        nil,
+        function(chunk)
+            efi = efi .. chunk
+        end,
+        8
+    )
+    component.eeprom.set(efi)
+
+    if switch.state then
+        GUI.alert("Ваш ПК перезапустится!")
+        computer.shutdown(true)
+    else
+        GUI.alert("Перезагрузите ПК!")
+    end
+end
 
 window.onResize = function(width, height)
     window.backgroundPanel.width, window.backgroundPanel.height = width, height
