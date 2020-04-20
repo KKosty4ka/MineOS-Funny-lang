@@ -42,7 +42,7 @@ installButton.onTouch = function()
 
     local efi = ""
     internet.rawRequest(
-        "https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/EFI/Minifed.lua",
+        "https://raw.githubusercontent.com/KKosty4ka/MineOS-Funny-lang/master/EFI/Loader.lua",
         nil,
         nil,
         function(chunk)

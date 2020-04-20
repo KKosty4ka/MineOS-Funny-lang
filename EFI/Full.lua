@@ -1,8 +1,8 @@
-local stringsMain, stringsChangeLabel, stringKeyDown, stringsFilesystem, colorsTitle, colorsBackground, colorsText, colorsSelectionBackground, colorsSelectionText, componentProxy, componentList, pullSignal, uptime, tableInsert, mathMax, mathMin, mathHuge, mathFloor = "ЖОПА", "НЕ ТРОГАЙ", "key_down", "filesystem", 0x2D2D2D, 0xE1E1E1, 0x878787, 0x878787, 0xE1E1E1, component.proxy, component.list, computer.pullSignal, computer.uptime, table.insert, math.max, math.min, math.huge, math.floor
+local stringsMain, stringsChangeLabel, stringKeyDown, stringsFilesystem, colorsTitle, colorsBackground, colorsText, colorsSelectionBackground, colorsSelectionText, cp, cl, pullSignal, uptime, tableInsert, mathMax, mathMin, mathHuge, mathFloor = "ЖОПА", "НЕ ТРОГАЙ", "key_down", "filesystem", 0x2D2D2D, 0xE1E1E1, 0x878787, 0x878787, 0xE1E1E1, component.proxy, component.list, computer.pullSignal, computer.uptime, table.insert, math.max, math.min, math.huge, math.floor
 
-local eeprom, gpu, internetAddress = componentProxy(componentList("eeprom")()), componentProxy(componentList("gpu")()), componentList("internet")()
+local eeprom, gpu, internetAddress = cp(cl("eeprom")()), cp(cl("gpu")()), cl("internet")()
 
-gpu.bind(componentList("screen")(), true)
+gpu.bind(cl("screen")(), true)
 
 local shutdown, gpuSet, gpuFill, eepromSetData, eepromGetData, screenWidth, screenHeight = computer.shutdown, gpu.set, gpu.fill, eeprom.setData, eeprom.getData, gpu.getResolution()
 
@@ -191,7 +191,7 @@ local boot, menuBack, menu, input =
 		end
 	end
 
-status(stringsMain, "Загрузка, обожди, смертный!")
+status(stringsMain, "Обожди, смертный!")
 
 local deadline, eventData = uptime() + 1
 while uptime() < deadline do
@@ -216,10 +216,10 @@ while uptime() < deadline do
 						table.remove(filesystems, 1)
 					end
 
-					for address in componentList(stringsFilesystem) do
-						local proxy = componentProxy(address)
+					for address in cl(stringsFilesystem) do
+						local proxy = cp(address)
 						local label, isReadOnly, filesystemOptions =
-							proxy.getLabel() or "Кукиш да фига",
+							proxy.getLabel() or "Фиг",
 							proxy.isReadOnly(),
 							{
 								menuElement("Пошёл нахрен", function()
@@ -234,8 +234,8 @@ while uptime() < deadline do
 								updateFilesystems()
 							end, 1))
 
-							tableInsert(filesystemOptions, menuElement("АТФАРМАТИРАВАТЬ!", function()
-								status(stringsMain, "ФАРМАТИРУИМ " .. address)
+							tableInsert(filesystemOptions, menuElement("Выкинуть!", function()
+								status(stringsMain, "Выкидываем " .. address)
 								
 								for _, file in ipairs(proxy.list("/")) do
 									proxy.remove(file)
@@ -276,7 +276,7 @@ while uptime() < deadline do
 
 		if internetAddress then	
 			tableInsert(utilities, 2, menuElement("Интернет рековери", function()
-				local handle, data, result, reason = componentProxy(internetAddress).request("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Installer/Main.lua"), ""
+				local handle, data, result, reason = cp(internetAddress).request("https://raw.githubusercontent.com/IgorTimofeev/MineOS/master/Installer/Main.lua"), ""
 
 				if handle then
 					status(stringsMain, "Обожди, смертный!")
@@ -308,10 +308,10 @@ while uptime() < deadline do
 	end
 end
 
-local proxy = componentProxy(eepromGetData())
+local proxy = cp(eepromGetData())
 if not (proxy and boot(proxy)) then
-	for address in componentList(stringsFilesystem) do
-		proxy = componentProxy(address)
+	for address in cl(stringsFilesystem) do
+		proxy = cp(address)
 
 		if boot(proxy) then
 			break
